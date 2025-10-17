@@ -10,12 +10,12 @@ export class DashboardComponent {
   user:any;username:any;
   constructor(private router:Router){}
   logout(){
-    localStorage.removeItem("loggedin")
+    localStorage.removeItem("adminloggedin")
     this.router.navigateByUrl("")
   }
   ngOnInit(){
-    if(localStorage.getItem('loggedin')){
-      this.user=localStorage.getItem("loggedin");
+    if(localStorage.getItem('adminloggedin')){
+      this.user=localStorage.getItem("adminloggedin");
       this.user=JSON.parse(this.user)
       this.username=this.user.username
     }

@@ -46,9 +46,34 @@ export class ProductService {
     return of(this.productlist);
   }
 
+  getLaptopById(pid:any){
+    return this.productlist.find(i=>i.productId==pid);
+  }
+
+
+
   addLaptops(laptop:any){
     this.productlist.push(laptop);
     return "product added successfully"
   }
+  deleteLaptop(pid:any){
+  const index=this.productlist.findIndex(i=>i.productId==pid);
+    if(index==-1){
+      return "product not found"
+    }
+    else{
+      this.productlist.splice(index,1);
+      return "product deleted"
+    }
+  }
+
+  updateLaptop(updated:any){
+    const index=this.productlist.findIndex(i=>i.productId==updated.productId);
+    this.productlist.splice(index,1,updated);
+    return "product updated!..."
+
+  }
+
+
 
 }

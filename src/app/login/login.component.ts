@@ -17,12 +17,18 @@ export class LoginComponent {
         password:['',Validators.required]
       })
     }
-
+  reqpwd:any;
     checkLogin(){
-      if(this.loginForm.value.password=="12345"){
+      this.reqpwd=this.loginForm.value.username.slice(0,3)+"123"
+      if(this.loginForm.value.username=="admin" && this.loginForm.value.password=="12345"){
           alert("login success")
           this.router.navigateByUrl("/admin/view")
-          localStorage.setItem("loggedin",JSON.stringify(this.loginForm.value))
+          localStorage.setItem("adminloggedin",JSON.stringify(this.loginForm.value))
+      }
+      else if(this.loginForm.value.password==this.reqpwd){
+        this.router.navigateByUrl("/user/view")
+       localStorage.setItem("userloggedin",JSON.stringify(this.loginForm.value))
+        
       }
       else{
         alert("login failed")
